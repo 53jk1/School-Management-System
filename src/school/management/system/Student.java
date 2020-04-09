@@ -12,7 +12,7 @@ public class Student {
 
     /**
      * To create a new student by initializing.
-     * Fees for every student is $100.
+     * Fees for every student is $3000.
      * Fees paid initialy is 0.
      * @param id id for student: unique.
      * @param name name of the student.
@@ -23,7 +23,7 @@ public class Student {
     public Student(int id, String name, int grade){
 
         this.feesPaid=0;
-        this.feesTotal=100;
+        this.feesTotal=3000;
 
         this.id=id;
         this.name=name;
@@ -49,8 +49,10 @@ public class Student {
      * @param fees
      */
 
-    public void updateFeesPaid(int fees){
+    public void payFees(int fees){
         feesPaid+=fees;
+        School.updateTotalMoneyEarned(feesPaid);
+
     }
 
     /**
@@ -93,4 +95,19 @@ public class Student {
     public int getFeesTotal() {
         return feesTotal;
     }
+
+    /**
+     *
+     * @return the remaining fees.
+     */
+    public int getRemainingFees(){
+        return feesTotal-feesPaid;
+    }
+
+    @Override
+    public String toString() {
+        return "Student's name: " + name +
+                "\nTotal fees paid so far $" + feesPaid + "\n";
+    }
+
 }
